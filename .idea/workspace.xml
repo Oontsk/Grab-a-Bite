@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5769b56a-a622-47a3-9a4c-20d253d54dd4" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/redirect.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/signup.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/389something.html" afterPath="$PROJECT_DIR$/389something.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/signup.html" afterPath="$PROJECT_DIR$/signup.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,12 +17,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="63">
               <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="redirect.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/redirect.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="389something.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/389something.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="64" lean-forward="true" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signup.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/signup.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="36" column="23" lean-forward="true" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+              <folding>
+                <marker date="1509489902671" expanded="true" signature="687:744" ph="insert into users... " />
+                <marker date="1509489902671" expanded="true" signature="687:751" ph="insert into users... " />
+                <marker date="1509489902671" expanded="true" signature="687:752" ph="insert into users... " />
+                <marker date="1509489902671" expanded="true" signature="687:762" ph="insert into users... " />
+                <marker date="1509489902671" expanded="true" signature="687:808" ph="insert into users... " />
+                <marker date="1509489902671" expanded="true" signature="687:819" ph="insert into users... " />
+                <marker date="1509489902671" expanded="true" signature="687:823" ph="insert into users... " />
+                <marker date="1509489902671" expanded="true" signature="687:882" ph="insert into users... " />
+                <marker date="1509489902671" expanded="true" signature="687:883" ph="insert into users... " />
+                <marker date="1509489902671" expanded="true" signature="687:886" ph="insert into users... " />
+                <marker date="1509489902671" expanded="true" signature="687:896" ph="insert into users... " />
+                <marker date="1509489902671" expanded="true" signature="966:2493" ph="..." />
+                <marker date="1509489902671" expanded="true" signature="973:988" ph="..." />
+                <marker date="1509489902671" expanded="true" signature="973:1034" ph="..." />
+                <marker date="1509489902671" expanded="true" signature="1041:1057" ph="..." />
+                <marker date="1509489902671" expanded="true" signature="1041:2485" ph="..." />
+                <marker date="1509489902671" expanded="true" signature="1084:2477" ph="..." />
+                <marker date="1509489902671" expanded="true" signature="1410:1422" ph="..." />
+                <marker date="1509489902671" expanded="true" signature="1615:2121" ph="..." />
+                <marker date="1509489902671" expanded="true" signature="1624:1647" ph="..." />
+                <marker date="1509489902671" expanded="true" signature="1624:1864" ph="..." />
+                <marker date="1509489902671" expanded="true" signature="1873:1896" ph="..." />
+                <marker date="1509489902671" expanded="true" signature="1873:2109" ph="..." />
+                <marker date="1509489902671" expanded="true" signature="2212:2241" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -32,6 +91,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/main.php" />
+        <option value="$PROJECT_DIR$/redirect.php" />
+        <option value="$PROJECT_DIR$/signup.html" />
+        <option value="$PROJECT_DIR$/389something.html" />
+        <option value="$PROJECT_DIR$/signup.php" />
       </list>
     </option>
   </component>
@@ -42,11 +105,11 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="14" />
-    <option name="y" value="17" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-270" />
+    <option name="y" value="9" />
     <option name="width" value="1147" />
-    <option name="height" value="990" />
+    <option name="height" value="529" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -104,15 +167,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1508962259534</updated>
-      <workItem from="1508962260711" duration="1502000" />
+      <workItem from="1508962260711" duration="7010000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1502000" />
+    <option name="totallyTimeSpent" value="7010000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="14" y="17" width="1147" height="990" extended-state="1" />
+    <frame x="-270" y="9" width="1147" height="529" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24977857" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -150,6 +213,63 @@
         <state relative-caret-position="63">
           <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redirect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="37" column="7" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="37" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/389something.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="64" lean-forward="true" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/signup.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="36" column="23" lean-forward="true" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+          <folding>
+            <marker date="1509489902671" expanded="true" signature="687:744" ph="insert into users... " />
+            <marker date="1509489902671" expanded="true" signature="687:751" ph="insert into users... " />
+            <marker date="1509489902671" expanded="true" signature="687:752" ph="insert into users... " />
+            <marker date="1509489902671" expanded="true" signature="687:762" ph="insert into users... " />
+            <marker date="1509489902671" expanded="true" signature="687:808" ph="insert into users... " />
+            <marker date="1509489902671" expanded="true" signature="687:819" ph="insert into users... " />
+            <marker date="1509489902671" expanded="true" signature="687:823" ph="insert into users... " />
+            <marker date="1509489902671" expanded="true" signature="687:882" ph="insert into users... " />
+            <marker date="1509489902671" expanded="true" signature="687:883" ph="insert into users... " />
+            <marker date="1509489902671" expanded="true" signature="687:886" ph="insert into users... " />
+            <marker date="1509489902671" expanded="true" signature="687:896" ph="insert into users... " />
+            <marker date="1509489902671" expanded="true" signature="966:2493" ph="..." />
+            <marker date="1509489902671" expanded="true" signature="973:988" ph="..." />
+            <marker date="1509489902671" expanded="true" signature="973:1034" ph="..." />
+            <marker date="1509489902671" expanded="true" signature="1041:1057" ph="..." />
+            <marker date="1509489902671" expanded="true" signature="1041:2485" ph="..." />
+            <marker date="1509489902671" expanded="true" signature="1084:2477" ph="..." />
+            <marker date="1509489902671" expanded="true" signature="1410:1422" ph="..." />
+            <marker date="1509489902671" expanded="true" signature="1615:2121" ph="..." />
+            <marker date="1509489902671" expanded="true" signature="1624:1647" ph="..." />
+            <marker date="1509489902671" expanded="true" signature="1624:1864" ph="..." />
+            <marker date="1509489902671" expanded="true" signature="1873:1896" ph="..." />
+            <marker date="1509489902671" expanded="true" signature="1873:2109" ph="..." />
+            <marker date="1509489902671" expanded="true" signature="2212:2241" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -13,6 +13,15 @@ $password = "";
 $pn = "";
 $bd = "";
 $text = "";
+$startAvail = "";
+$endAvail = "";
+$avail = "";
+
+require_once ("dbLogin.php");
+
+if (isset($_POST["home"]) && $_POST["home"] === "Go back") {
+    header("Location: 389something.html");
+}
 
 if (isset($_POST["email"])) {
     $fn = trim($_POST["firstName"]);
@@ -23,16 +32,18 @@ if (isset($_POST["email"])) {
     $bd = $_POST["birthday"];
     $food = implode(",", $_POST["food"]);
     $text = trim($_POST["texte"]);
+    $startAvail = $_POST["usr-start-time"];
+    $endAvail = $_POST["usr-end-time"];
+    $avail = $startAvail . " " . $endAvail;
 
-    $theTable = new mysqli("localhost", "dbuser", "Cheesey",
-                             "Grab-a-bite");
+    $theTable = new mysqli($host, $user, $dbpassword, $database);
 
     $pwhash = password_hash($password, PASSWORD_DEFAULT);
 
     $theTable->query("insert into users VALUES 
                             (\"{$fn}\", \"{$ln}\", \"{$email}\",
                             \"{$pwhash}\", \"{$pn}\", \"{$bd}\",
-                            \"{$text}\", \"{$food}\")");
+                            \"{$food}\", \"{$text}\", \"{$avail}\")");
 
     $theTable->close();
 }

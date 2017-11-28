@@ -24,7 +24,7 @@ BODY;
 
 if(isset($_POST['login'])){
     //Connect to DB
-    $db_connection = new mysqli($host, $user, $password, $database);
+    $db_connection = new mysqli($host, $user, $dbpassword, $database);
 
     if ($db_connection->connect_error){
         die($db_connection->connect_error);

@@ -2,21 +2,20 @@
 <html>
 <head>
 	<title>Grab A Bite Homepage</title>
-	<link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <body>
-	<h1>Welcome to Grab A Bite</h1>
-	<p>
-		Have you been here before?
-		<form action="login.php" method="POST">
-			Username: <input type="text" name="username"/><br><br>
-			Password: <input type="password" name="password"/><br><br>
-			<input type="submit" name="login" value="Log In"/><br><br>
-		</form>
-		Are you a new friend?<br><br>
-		<form action="signup.html" method="POST">
-			<input type="submit" name="signup" value="Sign Up"/>
-		</form>
-	</p>
+<h1>Welcome to Grab A Bite</h1>
+<p>
+	Have you been here before?
+<form action="login.php" method="POST">
+	Username/Email: <input type="email" name="email" required="required"/><br><br>
+	Password: <input type="password" name="password" /><br><br>
+	<input type="submit" name="login" value="Log In"/><br><br>
+</form>
+Are you a new friend?<br><br>
+<form action="signup.php" method="POST">
+	<input type="submit" name="signup" value="Sign Up"/>
+</form>
+</p>
 </body>
 </html>

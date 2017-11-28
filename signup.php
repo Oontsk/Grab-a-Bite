@@ -16,6 +16,9 @@ $text = "";
 $startAvail = "";
 $endAvail = "";
 $avail = "";
+$imagePrefix = "ProfilePictures/";
+$imageName = "";
+$imageData;
 
 require_once ("dbLogin.php");
 
@@ -35,15 +38,19 @@ if (isset($_POST["email"])) {
     $startAvail = $_POST["usr-start-time"];
     $endAvail = $_POST["usr-end-time"];
     $avail = $startAvail . " " . $endAvail;
+    $imageName = $imagePrefix . $_POST["picture"];
+
 
     $theTable = new mysqli($host, $user, $dbpassword, $database);
+    $imageData = mysqli_real_escape_string($theTable, file_get_contents($imageName));
+
 
     $pwhash = password_hash($password, PASSWORD_DEFAULT);
 
     $theTable->query("insert into users VALUES 
                             (\"{$fn}\", \"{$ln}\", \"{$email}\",
                             \"{$pwhash}\", \"{$pn}\", \"{$bd}\",
-                            \"{$food}\", \"{$text}\", \"{$avail}\")");
+                            \"{$food}\", \"{$text}\", \"{$avail}\", \"{$imageData}\")");
 
     $theTable->close();
 }
@@ -87,7 +94,7 @@ $page = <<< THIS
 		 When are you available?<br>
 		 Starting from: <input type="time" name="usr-start-time"> until: <input type="time" name="usr-end-time"><br><br>
 
-Upload your profile picture: <input type="file" name="picture" accept="image/*">
+Upload your profile picture: <input type="file" name="picture" accept="image/*" value="$imageName">
 		<br><br>
 	<input type="reset" value="Clear">
 	<input type="submit" value="Submit">

@@ -24,8 +24,8 @@ if (isset($_POST["email"])) {
     $food = implode(",", $_POST["food"]);
     $text = trim($_POST["texte"]);
 
-    $theTable = new mysqli("localhost", "dbuser",
-                            "Cheesey", "Grab-a-Bite");
+    $theTable = new mysqli("localhost", "dbuser", "Cheesey",
+                             "Grab-a-bite");
 
     $pwhash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -68,9 +68,13 @@ $page = <<< THIS
 				</tr>
 			</table>
 		<br><br>
-		Tell us a little about yourself!
+		Tell us a little about yourself!<br>
 		<textarea rows="5" cols="75" name="texte"
 		 value="$text"> </textarea><br><br>
+		 
+		 
+		 When are you available?<br>
+		 Starting from: <input type="time" name="usr-start-time"> until: <input type="time" name="usr-end-time"><br><br>
 
 Upload your profile picture: <input type="file" name="picture" accept="image/*">
 		<br><br>

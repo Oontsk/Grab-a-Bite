@@ -2,6 +2,6 @@
 /* Update based on your database and account info */
 $host = "localhost";
 $user = "dbuser";
-$password = "goodbyeWorld";
-$database = "users";
+$password = "Cheesey";
+$database = "grab-a-bite";
 ?>

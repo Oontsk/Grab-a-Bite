@@ -8,7 +8,8 @@ if ($db_connection->connect_error){
 }
 print_r($_POST);
 
-$email = $_POST['email'];
+session_start();
+$email = $_SESSION['UserEmail'];
 $query = "select * from users where email='$email'";
 $result = $db_connection->query($query);
 

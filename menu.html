@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Menu Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="shortcut icon" href="favicon.ico"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="jumbotron text-center">
+	<h1>Grab A Bite</h1>
+	<p>What would you like to do?</p>
+</div>
+
+<div class="container">
+	<div class="text-center">
+		<hr><br>
+		<div class="form-group row">
+			<div class="col-sm-4">
+				<form action="myProfile.php" method="POST">
+					<input type="submit" name="profile" value="Check My Profile"/>
+				</form>
+			</div>
+
+			<div class="col-sm-4">
+				<form action="myMatches.html" method="POST">
+					<input type="submit" name="matches" value="See My Matches"/>
+				</form>
+			</div>
+
+			<div class="col-sm-4">
+				<form action="makeFriends.php" method="POST">
+					<input type="submit" name="newFriends" value="Make New Friends"/><br><br>
+				</form>
+			</div>
+		</div>
+		<hr><br>
+
+		<form action="homepage.html" method="POST">
+			<input type="submit" name="home" value="Go Back"/><br><br>
+		</form>
+		<hr>
+	</div>
+</div>
+</body>
+</html>

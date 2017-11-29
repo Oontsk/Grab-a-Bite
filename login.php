@@ -12,7 +12,7 @@ $body = <<<BODY
 	<p>
 		<h2>Please Login</h2>
 		<form action="{$_SERVER["PHP_SELF"]}" method="POST">
-			Username: <input type="email" name="email"/><br><br>
+			Email: <input type="email" name="email"/><br><br>
 			Password: <input type="password" name="password" required="required"/><br><br>
 			<input type="submit" name="login" value="Log In"/><br><br>
 		</form>
@@ -30,6 +30,7 @@ if(isset($_POST['login'])){
         die($db_connection->connect_error);
     }
 
+    print_r($_POST);
     $tempEmail = $_POST['email'];
     $password = $_POST['password'];
     $email = trim($tempEmail);
@@ -55,7 +56,7 @@ if(isset($_POST['login'])){
             $_SESSION['UserEmail'] = $email;
 
             if (isset($_POST["login"]) ) {
-                header("Location: myProfile.php");
+                header("Location: menu.html");
             }
 
         }else {

@@ -6,6 +6,7 @@ $body = <<<BODY
 <html>
 <head>
 	<title>Grab A Bite Homepage</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <body>
 	<h1>Welcome to Grab A Bite</h1>

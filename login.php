@@ -58,7 +58,7 @@ if(isset($_POST['login'])){
             $body = <<<NEW
                 <h2>Welcome {$firstName} {$lastName} to Grab-a-Bite</h2>
            
-                <form action="myProfile.html" method="post">
+                <form action="myProfile.php" method="post">
                     <input type="submit" value="Return to main menu">
                 </form>
 NEW;

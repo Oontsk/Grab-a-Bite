@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Home Page</title>
-	</head>
+<head>
+	<title>Menu Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="shortcut icon" href="favicon.ico"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 
-	<body>
-		<h2>Grab A Bite</h2>
+<body>
+<div class="jumbotron text-center">
+	<h1>Grab A Bite</h1>
+	<p>What would you like to do?</p>
+</div>
 
-		What would you like to do?
-		<br><br>
+<div class="container">
+	<div class="text-center">
+		<hr><br>
+		<div class="form-group row">
+			<div class="col-sm-4">
+				<form action="myProfile.php" method="POST">
+					<input type="submit" name="profile" value="Check My Profile"/>
+				</form>
+			</div>
 
-		<form action="myProfile.php" method="POST">
-			<input type="submit" name="profile" value="Check My Profile"/>
-		</form>
+			<div class="col-sm-4">
+				<form action="myMatches.html" method="POST">
+					<input type="submit" name="matches" value="See My Matches"/>
+				</form>
+			</div>
 
-		<form action="myMatches.html" method="POST">
-			<input type="submit" name="matches" value="See My Matches"/>
-		</form>
-
-		<form action="makeFriends.html" method="POST">
-			<input type="submit" name="newFriends" value="Make New Friends"/>
-		</form>
-		<br><br>
+			<div class="col-sm-4">
+				<form action="makeFriends.html" method="POST">
+					<input type="submit" name="newFriends" value="Make New Friends"/><br><br>
+				</form>
+			</div>
+		</div>
+		<hr><br>
 
 		<form action="homepage.html" method="POST">
-			<input type="submit" name="home" value="Go Back"/>
+			<input type="submit" name="home" value="Go Back"/><br><br>
 		</form>
-	</body>
+		<hr>
+	</div>
+</div>
+</body>
 </html>

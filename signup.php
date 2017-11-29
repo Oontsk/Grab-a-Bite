@@ -12,9 +12,10 @@ $text = "";
 $startAvail = "";
 $endAvail = "";
 $avail = "";
-$imagePrefix = "ProfilePictures/";
-$imageName = "";
-$imageData;
+$fileName= "";
+$imgData;
+
+
 
 require_once ("dbLogin.php");
 
@@ -25,12 +26,12 @@ if (isset($_POST["home"]) && $_POST["home"] === "Go back") {
 if (isset($_POST["email"])) {
     $email = trim($_POST["email"]);
 
+
     $db_connection = new mysqli($host, $user, $dbpassword, $database);
     $result = $db_connection->query("SELECT 1 FROM users WHERE email = \"{$email}\"");
 
-    if ($result->num_rows > 0){
+    if ($result->num_rows === 0) {
 
-    }else{
         $fn = trim($_POST["firstName"]);
         $ln = trim($_POST["lastName"]);
 
@@ -43,27 +44,36 @@ if (isset($_POST["email"])) {
         $endAvail = $_POST["usr-end-time"];
         $avail = $startAvail . " " . $endAvail;
 
-        if(!(isset($_POST["picture"]))){
-            $imageName = "ProfilePictures/defaultProfile.png";
-        }else{
-            $imageName = $imagePrefix . $_POST["picture"];
-        }
 
-        $theTable = new mysqli($host, $user, $dbpassword, $database);
-        $imageData = mysqli_real_escape_string($theTable, file_get_contents($imageName));
+
+        if (!is_uploaded_file($_FILES['picture']['tmp_name'])) {
+            $imgData = $db_connection->real_escape_string(
+                file_get_contents("ProfilePictures/defaultProfile.png"));
+        } else {
+            $imgData = $db_connection->real_escape_string(file_get_contents($_FILES['picture']['tmp_name']));
+        }
 
         $pwhash = password_hash($password, PASSWORD_DEFAULT);
 
-        $theTable->query("insert into users VALUES 
+        $db_connection->query("insert into users VALUES 
                             (\"{$fn}\", \"{$ln}\", \"{$email}\",
                             \"{$pwhash}\", \"{$pn}\", \"{$bd}\",
-                            \"{$food}\", \"{$text}\", \"{$avail}\", \"{$imageData}\")");
+                            \"{$food}\", \"{$text}\", \"{$avail}\", \"{$imgData}\")");
 
-        $theTable->close();
+        $db_connection->close();
+
+        session_start();
+        $_SESSION["UserEmail"] = $email;
+
+        echo "<script>
+            let s = document.getElementById(\"filePic\").value;
+document.writeln(s);</script>";
+
+        //header("Location: myProfile.php");
     }
 
-
 }
+
 
 $page = <<< THIS
 <!DOCTYPE html>
@@ -81,7 +91,7 @@ $page = <<< THIS
 <body>
 	<div class="container">
     <div class="text-center">
-	<form action="signup.php" method="POST">
+	<form enctype="multipart/form-data" action="signup.php" method="POST">
     	<hr><br>
         
         <!-- First Name -->
@@ -149,7 +159,8 @@ $page = <<< THIS
         
         <div class="form-group text-center">
     		<div class="input-group" style="margin:auto;">
-      			<input type="file" name="picture" accept="image/*" value="$imageName"><br>
+    		    <input type="hidden" name="MAX_FILE_SIZE" value="30000"/>
+      			<input type="file" name="picture" accept="image/*" id="filePic"><br>
     		</div>
     	</div>
         <hr><br>
@@ -162,6 +173,8 @@ $page = <<< THIS
         
 	</form>
     </div>
+    
+    
 </body>
 </html>
 THIS;

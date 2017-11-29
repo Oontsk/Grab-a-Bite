@@ -30,6 +30,7 @@ if(isset($_POST['login'])){
         die($db_connection->connect_error);
     }
 
+    print_r($_POST);
     $tempEmail = $_POST['email'];
     $password = $_POST['password'];
     $email = trim($tempEmail);

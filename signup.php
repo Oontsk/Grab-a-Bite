@@ -23,44 +23,58 @@ if (isset($_POST["home"]) && $_POST["home"] === "Go back") {
 }
 
 if (isset($_POST["email"])) {
-
-    $fn = trim($_POST["firstName"]);
-    $ln = trim($_POST["lastName"]);
     $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
-    $pn = $_POST["telephoneNumber"];
-    $bd = $_POST["birthday"];
-    $food = implode(",", $_POST["food"]);
-    $text = trim($_POST["texte"]);
-    $startAvail = $_POST["usr-start-time"];
-    $endAvail = $_POST["usr-end-time"];
-    $avail = $startAvail . " " . $endAvail;
-    $imageName = $imagePrefix . $_POST["picture"];
 
-    $theTable = new mysqli($host, $user, $dbpassword, $database);
-    $imageData = mysqli_real_escape_string($theTable, file_get_contents($imageName));
+    $db_connection = new mysqli($host, $user, $dbpassword, $database);
+    $result = $db_connection->query("SELECT 1 FROM users WHERE email = \"{$email}\"");
 
-    $pwhash = password_hash($password, PASSWORD_DEFAULT);
+    if ($result->num_rows > 0){
 
-    $theTable->query("insert into users VALUES 
+    }else{
+        $fn = trim($_POST["firstName"]);
+        $ln = trim($_POST["lastName"]);
+
+        $password = trim($_POST["password"]);
+        $pn = $_POST["telephoneNumber"];
+        $bd = $_POST["birthday"];
+        $food = implode(",", $_POST["food"]);
+        $text = trim($_POST["text"]);
+        $startAvail = $_POST["usr-start-time"];
+        $endAvail = $_POST["usr-end-time"];
+        $avail = $startAvail . " " . $endAvail;
+
+        if(!(isset($_POST["picture"]))){
+            $imageName = "ProfilePictures/defaultProfile.png";
+        }else{
+            $imageName = $imagePrefix . $_POST["picture"];
+        }
+
+        $theTable = new mysqli($host, $user, $dbpassword, $database);
+        $imageData = mysqli_real_escape_string($theTable, file_get_contents($imageName));
+
+        $pwhash = password_hash($password, PASSWORD_DEFAULT);
+
+        $theTable->query("insert into users VALUES 
                             (\"{$fn}\", \"{$ln}\", \"{$email}\",
                             \"{$pwhash}\", \"{$pn}\", \"{$bd}\",
                             \"{$food}\", \"{$text}\", \"{$avail}\", \"{$imageData}\")");
 
-    $theTable->close();
+        $theTable->close();
+    }
+
+
 }
 
 $page = <<< THIS
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8"/>
+<meta charset="UTF-8"/>
 	<title>Sign Up Page</title>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="favicon.ico"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -151,5 +165,9 @@ $page = <<< THIS
 </body>
 </html>
 THIS;
+
+if(isset($_POST['email']) && $result->num_rows > 0){
+    $page .= "<h2>Email already in system</h2>";
+}
 
 echo $page;

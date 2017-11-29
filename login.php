@@ -6,7 +6,6 @@ $body = <<<BODY
 <html>
 <head>
 	<title>Grab A Bite Homepage</title>
-    <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <body>
 	<h1>Welcome to Grab A Bite</h1>
@@ -39,7 +38,7 @@ if(isset($_POST['login'])){
 
     $query = "select firstName,lastName,email,password from users where email='$email'";
     $result = $db_connection->query($query);
-    
+
 
     if ($result->num_rows == 0) {
         $body .= "<h2>No entry exists in the database for the specified email and password</h2>";
@@ -52,14 +51,14 @@ if(isset($_POST['login'])){
             $firstName = $row['firstName'];
             $lastName = $row['lastName'];
 
+            if (isset($_POST["login"]) ) {
+                header("Location: myProfile.html");
+            }
 
             $body = <<<NEW
-                <h2>Application found in the database with the following values:</h2>
-                <strong>Name: </strong>$firstName<br/>
-                <strong>LastName: </strong>$lastName<br/>
-                <strong>Email: </strong>$email<br/>
+                <h2>Welcome {$firstName} {$lastName} to Grab-a-Bite</h2>
            
-                <form action="389something.html" method="post">
+                <form action="myProfile.html" method="post">
                     <input type="submit" value="Return to main menu">
                 </form>
 NEW;

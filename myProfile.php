@@ -15,6 +15,12 @@ $result = $db_connection->query($query);
     $result->data_seek(0);
     $row = $result->fetch_array(MYSQLI_ASSOC);
 
+    $photo = $row["photo"];
+
+    $photodata = base64_encode($photo);
+
+    echo "<img src=\"data:image/jpeg;base64,{$photodata}\">";
+
     $firstName = $row['firstName'];
     $lastName = $row['lastName'];
     $telephoneNumber = $row['telephoneNumber'];

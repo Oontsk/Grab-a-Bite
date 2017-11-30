@@ -14,6 +14,7 @@ $endAvail = "";
 $avail = "";
 $fileName= "";
 $imgData;
+$page = "";
 
 
 
@@ -29,6 +30,8 @@ if (isset($_POST["email"])) {
 
     $db_connection = new mysqli($host, $user, $dbpassword, $database);
     $result = $db_connection->query("SELECT 1 FROM users WHERE email = \"{$email}\"");
+
+
 
     if ($result->num_rows === 0) {
 
@@ -46,7 +49,7 @@ if (isset($_POST["email"])) {
 
 
 
-        if (!is_uploaded_file($_FILES['picture']['tmp_name'])) {
+        if ($_FILES['picture']['tmp_name'] === "") {
             $imgData = $db_connection->real_escape_string(
                 file_get_contents("ProfilePictures/defaultProfile.png"));
         } else {
@@ -65,21 +68,19 @@ if (isset($_POST["email"])) {
         session_start();
         $_SESSION["UserEmail"] = $email;
 
-        echo "<script>
-            let s = document.getElementById(\"filePic\").value;
-document.writeln(s);</script>";
-
-        //header("Location: myProfile.php");
+        header("Location: myProfile.php");
     }
 
 }
 
-
+if(isset($_POST['email']) && $result->num_rows > 0){
+    $page .= "<h2>Email already in system</h2>";
+}
 $page = <<< THIS
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8">
 	<title>Sign Up Page</title>
     
     <meta charset="utf-8">
@@ -159,7 +160,6 @@ $page = <<< THIS
         
         <div class="form-group text-center">
     		<div class="input-group" style="margin:auto;">
-    		    <input type="hidden" name="MAX_FILE_SIZE" value="30000"/>
       			<input type="file" name="picture" accept="image/*" id="filePic"><br>
     		</div>
     	</div>
@@ -179,8 +179,6 @@ $page = <<< THIS
 </html>
 THIS;
 
-if(isset($_POST['email']) && $result->num_rows > 0){
-    $page .= "<h2>Email already in system</h2>";
-}
+
 
 echo $page;

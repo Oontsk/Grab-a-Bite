@@ -14,6 +14,7 @@ $body = <<<TOPBODY
 	<head>
 		<title>Make Friends</title>
 		<link rel="shortcut icon" href="favicon.ico"/>
+        <link rel="stylesheet" href="menu.css"/>
 	</head>
 	<body>
 		<h2>Make New Friends</h2>
@@ -96,7 +97,7 @@ TOPBODY;
     $body .= <<<BOTTOMBODY
 
         <form action="menu.html" method="POST">
-			<input type="submit" name="home" value="Go Home"/>
+			<input type="submit" name="home" value="Go Home" class="back"/>
 		</form>
 
 	</body>

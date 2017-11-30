@@ -89,6 +89,7 @@ $page = <<< THIS
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="menu.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -169,9 +170,9 @@ $page = <<< THIS
         <hr><br>
        
     	<!-- Reset, Submit, and Go Back buttons -->
-		<input type="reset" value="Clear">
-		<input type="submit" name="submitButton" value="Submit">
-		<input type="submit" name="submitButton" value="Go Back"/>
+		<input type="reset" value="Clear" class="buttons">
+		<input type="submit" name="submitButton" value="Submit" class="buttons">
+		<input type="submit" name="submitButton" value="Go Back" class="back"/>
     	<hr>
         
 	</form>

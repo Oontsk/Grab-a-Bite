@@ -20,56 +20,59 @@ $page = "";
 
 require_once ("dbLogin.php");
 
-if (isset($_POST["home"]) && $_POST["home"] === "Go back") {
-    header("Location: homepage.html");
-}
-
-if (isset($_POST["email"])) {
-    $email = trim($_POST["email"]);
 
 
-    $db_connection = new mysqli($host, $user, $dbpassword, $database);
-    $result = $db_connection->query("SELECT 1 FROM users WHERE email = \"{$email}\"");
-
-
-
-    if ($result->num_rows === 0) {
-
-        $fn = trim($_POST["firstName"]);
-        $ln = trim($_POST["lastName"]);
-
-        $password = trim($_POST["password"]);
-        $pn = $_POST["telephoneNumber"];
-        $bd = $_POST["birthday"];
-        $food = implode(",", $_POST["food"]);
-        $text = trim($_POST["text"]);
-        $startAvail = $_POST["usr-start-time"];
-        $endAvail = $_POST["usr-end-time"];
-        $avail = $startAvail . " " . $endAvail;
-
-
-
-        if ($_FILES['picture']['tmp_name'] === "") {
-            $imgData = $db_connection->real_escape_string(
-                file_get_contents("ProfilePictures/defaultProfile.png"));
+if (isset($_POST["submitButton"])) {
+        if ($_POST["submitButton"] === "Go Back") {
+            header("Location: homepage.html");
         } else {
-            $imgData = $db_connection->real_escape_string(file_get_contents($_FILES['picture']['tmp_name']));
-        }
+            $email = trim($_POST["email"]);
 
-        $pwhash = password_hash($password, PASSWORD_DEFAULT);
+            $db_connection = new mysqli($host, $user, $dbpassword, $database);
+            $result = $db_connection->query("SELECT 1 FROM users WHERE email = \"{$email}\"");
 
-        $db_connection->query("insert into users VALUES 
-                            (\"{$fn}\", \"{$ln}\", \"{$email}\",
-                            \"{$pwhash}\", \"{$pn}\", \"{$bd}\",
-                            \"{$food}\", \"{$text}\", \"{$avail}\", \"{$imgData}\")");
+            if ($result->num_rows === 0) {
 
-        $db_connection->close();
+                $fn = trim($_POST["firstName"]);
+                $ln = trim($_POST["lastName"]);
 
-        session_start();
-        $_SESSION["UserEmail"] = $email;
+                $password = trim($_POST["password"]);
+                $pn = $_POST["telephoneNumber"];
+                $bd = $_POST["birthday"];
+                $food = implode(",", $_POST["food"]);
+                $text = trim($_POST["text"]);
+                $startAvail = $_POST["usr-start-time"];
+                $endAvail = $_POST["usr-end-time"];
+                $avail = $startAvail . " " . $endAvail;
 
-        header("Location: menu.html");
+
+
+                if ($_FILES['picture']['tmp_name'] === "") {
+                    $imgData = $db_connection->real_escape_string(
+                        file_get_contents("ProfilePictures/defaultProfile.png"));
+                } else {
+                    $imgData = $db_connection->real_escape_string(file_get_contents($_FILES['picture']['tmp_name']));
+                }
+
+                $pwhash = password_hash($password, PASSWORD_DEFAULT);
+
+                $db_connection->query("insert into users VALUES 
+                                (\"{$fn}\", \"{$ln}\", \"{$email}\",
+                                \"{$pwhash}\", \"{$pn}\", \"{$bd}\",
+                                \"{$food}\", \"{$text}\", \"{$avail}\", \"{$imgData}\")");
+
+                $db_connection->close();
+
+                session_start();
+                $_SESSION["UserEmail"] = $email;
+
+                header("Location: menu.html");
+            }
     }
+
+
+
+
 
 }
 
@@ -167,8 +170,8 @@ $page = <<< THIS
        
     	<!-- Reset, Submit, and Go Back buttons -->
 		<input type="reset" value="Clear">
-		<input type="submit" value="Submit">
-		<input type="submit" name="home" value="Go Back"/>
+		<input type="submit" name="submitButton" value="Submit">
+		<input type="submit" name="submitButton" value="Go Back"/>
     	<hr>
         
 	</form>

@@ -19,7 +19,8 @@ $result = $db_connection->query($query);
 
     $photodata = base64_encode($photo);
 
-    echo "<img src=\"data:image/;base64,{$photodata}\">";  //THE PROFILE PICTUREEEEEE, EDIT THIS INTO PAGE
+    $imgData = "<img src=\"data:image/;base64,{$photodata}\" height='250' width='250' style='border-style: solid;
+    border-color: black;'>";  //THE PROFILE PICTUREEEEEE, EDIT THIS INTO PAGE
 
     $firstName = $row['firstName'];
     $lastName = $row['lastName'];
@@ -105,7 +106,7 @@ $body = <<<BODY
     <body>
     <h2>This is your profile, $firstName $lastName.</h2>
 
-    <img src="defaultProfile.png" alt="Profile Picture" style="width: 25%; border-style: solid; border-color: black;">
+    $imgData
     <br><br>
     <strong>Name:</strong>
         $firstName $lastName

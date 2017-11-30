@@ -45,6 +45,9 @@ if (isset($_POST["submitButton"])) {
                 $endAvail = $_POST["usr-end-time"];
                 $avail = $startAvail . " " . $endAvail;
 
+                $arr = [];
+                $friendsArray = serialize($arr);
+
 
 
                 if ($_FILES['picture']['tmp_name'] === "") {
@@ -59,7 +62,7 @@ if (isset($_POST["submitButton"])) {
                 $db_connection->query("insert into users VALUES 
                                 (\"{$fn}\", \"{$ln}\", \"{$email}\",
                                 \"{$pwhash}\", \"{$pn}\", \"{$bd}\",
-                                \"{$food}\", \"{$text}\", \"{$avail}\", \"{$imgData}\")");
+                                \"{$food}\", \"{$text}\", \"{$avail}\", \"{$imgData}\", \"{$friendsArray}\")");
 
                 $db_connection->close();
 

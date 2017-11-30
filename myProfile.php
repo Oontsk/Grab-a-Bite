@@ -100,7 +100,7 @@ $body = <<<BODY
     <head>
         <title>My Profile</title>
         <link rel="shortcut icon" href="favicon.ico"/>
-        <link rel="stylesheet" type="text/css" href="myProfile.css"/>
+        <link rel="stylesheet" type="text/css" href="menu.css"/>
     </head>
     <body>
     <h2>This is your profile, $firstName $lastName.</h2>
@@ -130,12 +130,12 @@ $body = <<<BODY
     <br><br>
 
     <form action="editProfile.php" method="POST">
-        <input type="submit" name="edit" value="Edit My Profile"/>
+        <input type="submit" name="edit" value="Edit My Profile" class="buttons"/>
     </form>
     <br>
 
     <form action="menu.html" method="POST">
-        <input type="submit" name="home" value="Go Home"/>
+        <input type="submit" name="home" value="Go Home" class="back"/>
     </form>
 </body>
 </html>

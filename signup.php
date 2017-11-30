@@ -68,7 +68,7 @@ if (isset($_POST["email"])) {
         session_start();
         $_SESSION["UserEmail"] = $email;
 
-        header("Location: myProfile.php");
+        header("Location: menu.html");
     }
 
 }

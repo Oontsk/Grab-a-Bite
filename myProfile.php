@@ -19,7 +19,7 @@ $result = $db_connection->query($query);
 
     $photodata = base64_encode($photo);
 
-    echo "<img src=\"data:image/jpeg;base64,{$photodata}\">";
+    echo "<img src=\"data:image/jpeg;base64,{$photodata}\">";  //THE PROFILE PICTUREEEEEE, EDIT THIS INTO PAGE
 
     $firstName = $row['firstName'];
     $lastName = $row['lastName'];

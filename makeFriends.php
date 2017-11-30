@@ -41,7 +41,7 @@ TOPBODY;
             $body = "<h2>No entries exists in the table</h2>";
         } else {
             $body .= "<table border=1>";
-            $body .= "<th>First Name</th><th>Last Name</th><th>Email</th><th>Foods</th><th>Time Available</th>";
+            $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Foods</th><th>Time Available</th><th>Age</th><th>Phone Number</th>";
 
 
             while ($recordArray = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -51,7 +51,7 @@ TOPBODY;
                 $email = $recordArray['email'];
 
                 $food = $recordArray['food'];
-
+                $birthday= $recordArray['birthday'];
                 $timeAvail = $recordArray['specifications'];
 
                 $timeAvail = explode(" ", $timeAvail);
@@ -77,51 +77,16 @@ TOPBODY;
 
                 $birthday = explode("-", $birthday);
 
-                switch ($birthday[1]) {
-                    case 1:
-                        $birthday[1] = "January";
-                        break;
-                    case 2:
-                        $birthday[1] = "February";
-                        break;
-                    case 3:
-                        $birthday[1] = "March";
-                        break;
-                    case 4:
-                        $birthday[1] = "April";
-                        break;
-                    case 5:
-                        $birthday[1] = "May";
-                        break;
-                    case 6:
-                        $birthday[1] = "June";
-                        break;
-                    case 7:
-                        $birthday[1] = "July";
-                        break;
-                    case 8:
-                        $birthday[1] = "August";
-                        break;
-                    case 9:
-                        $birthday[1] = "September";
-                        break;
-                    case 10:
-                        $birthday[1] = "October";
-                        break;
-                    case 11:
-                        $birthday[1] = "November";
-                        break;
-                    case 12:
-                        $birthday[1] = "December";
-                        break;
-                }
-
                 $birthday[3] = 2017 - $birthday[0];
 
+                $photo = $recordArray["photo"];
+
+                $photodata = base64_encode($photo);
+                $phoneNumber = $recordArray['telephoneNumber'];
 
 
 
-                $body .= "<td>$firstName</td><td>$lastName</td><td>$email</td><td>$food</td><td>$firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm</td></tr>";
+                $body .= "<td><img src=\"data:image / jpeg;base64,{$photodata}\" width='100' height='100'></td><td>$firstName</td><td>$lastName</td><td>$email</td><td>$food</td><td>$firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm</td><td>$birthday[3]</td><td>$phoneNumber</td></tr>";
 
             }
         }

@@ -7,6 +7,7 @@
  */
 
 require_once("dbLogin.php");
+require_once("Student.php");
 
 $body = <<<TOPBODY
 <!DOCTYPE html>
@@ -18,6 +19,7 @@ $body = <<<TOPBODY
 	</head>
 	<body>
 		<h2>Make New Friends</h2>
+		<form action="congrats.php" method="post">
 
 TOPBODY;
 
@@ -33,7 +35,14 @@ TOPBODY;
     $email = $_SESSION['UserEmail'];
 
     $query = "select * from users where email != '$email'";
+    $query2 = "select * from users where email = '$email'";
     $result = $db_connection->query($query);
+    $result2 = $db_connection->query($query2);
+
+    $user = mysqli_fetch_array($result2, MYSQLI_ASSOC);
+    $userFriends = unserialize($user['friends']);
+
+
 
     if ($result) {
         $numRow = mysqli_num_rows($result);
@@ -49,7 +58,7 @@ TOPBODY;
                 $body .= "<tr>";
                 $firstName = $recordArray['firstName'];
                 $lastName = $recordArray['lastName'];
-                $email = $recordArray['email'];
+                $friendEmail = $recordArray['email'];
 
                 $food = $recordArray['food'];
                 $birthday= $recordArray['birthday'];
@@ -87,7 +96,8 @@ TOPBODY;
 
 
 
-                $body .= "<td><img src=\"data:image / jpeg;base64,{$photodata}\" width='100' height='100'></td><td>$firstName</td><td>$lastName</td><td>$email</td><td>$food</td><td>$firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm</td><td>$birthday[3]</td><td>$phoneNumber</td></tr>";
+                $body .= "<td><img src=\"data:image / jpeg;base64,{$photodata}\" width='100' height='100'></td><td>$firstName</td><td>$lastName</td><td>$friendEmail</td><td>$food</td>
+                <td>$firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm</td><td>$birthday[3]</td><td>$phoneNumber</td><td><input type='checkbox' name='email[]' value=$friendEmail></td></tr>";
 
             }
         }
@@ -95,7 +105,8 @@ TOPBODY;
     }
 
     $body .= <<<BOTTOMBODY
-
+            <input type="submit" name="addFriends" value="Add Friends" class="back"/>
+        </form>
         <form action="menu.html" method="POST">
 			<input type="submit" name="home" value="Go Home" class="back"/>
 		</form>

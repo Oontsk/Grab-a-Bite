@@ -24,7 +24,7 @@ require_once ("dbLogin.php");
 
 if (isset($_POST["submitButton"])) {
         if ($_POST["submitButton"] === "Go Back") {
-            header("Location: homepage.html");
+            header("Location: homepage.php");
         } else {
             $email = trim($_POST["email"]);
 

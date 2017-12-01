@@ -18,7 +18,7 @@
 
 	if (isset($_POST["submitButton"])) {
         if ($_POST["submitButton"] === "Go Back") {
-            header("Location: homepage.html");
+            header("Location: menu.html");
         } else {
             $email = trim($_POST["email"]);
 

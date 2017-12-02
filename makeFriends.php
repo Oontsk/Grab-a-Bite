@@ -33,14 +33,27 @@ TOPBODY;
 
     session_start();
     $email = $_SESSION['UserEmail'];
-
-    $query = "select * from users where email != '$email'";
     $query2 = "select * from users where email = '$email'";
-    $result = $db_connection->query($query);
     $result2 = $db_connection->query($query2);
 
     $user = mysqli_fetch_array($result2, MYSQLI_ASSOC);
     $userFriends = unserialize($user['friends']);
+    $userTime = $user['specifications'];
+    $userFood = $user['food'];
+    $userFood = explode(",", $userFood);
+
+    $userTime = explode(' ', $userTime);
+
+
+
+
+
+    $query = "select * from users where email != '$email'";
+
+    $result = $db_connection->query($query);
+
+
+
 
 
 
@@ -48,8 +61,9 @@ TOPBODY;
         $numRow = mysqli_num_rows($result);
 
         if ($numRow == 0) {
-            $body = "<h2>No entries exists in the table</h2>";
+            $body = "<h2>Sorry no new friends were found :(</h2>";
         } else {
+            $anyFriends = false;
             $body .= "<table border=1>";
             $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Foods</th><th>Time Available</th><th>Age</th><th>Phone Number</th>";
 
@@ -64,9 +78,12 @@ TOPBODY;
                 $birthday= $recordArray['birthday'];
                 $timeAvail = $recordArray['specifications'];
 
+
+
                 $timeAvail = explode(" ", $timeAvail);
                 $firstHour = explode(":", $timeAvail[0]);
                 $secondHour = explode(":", $timeAvail[1]);
+
 
                 if ($firstHour[0] < 13) {
                     $firstAmOrPm = "am";
@@ -83,7 +100,6 @@ TOPBODY;
                 }
 
                 $food = explode(",", $food);
-                $food = implode(", ", $food);
 
                 $birthday = explode("-", $birthday);
 
@@ -95,13 +111,57 @@ TOPBODY;
                 $phoneNumber = $recordArray['telephoneNumber'];
 
 
+                if (checkTimes($userTime[0],$userTime[1],$timeAvail[0],$timeAvail[1]) && !(alreadyExists($userFriends, $friendEmail)) && hasCommonFood($userFood ,$food)){
+                    $anyFriends = true;
+                    $food = implode(", ", $food);
+                    $body .= <<<TABLEDATA
+                    <td><img src="data:image / jpeg;base64,{$photodata}" width='100' height='100'></td>
+                    <td>$firstName</td>
+                     <td>$lastName</td> 
+                     <td>$friendEmail</td> 
+                     <td>$food</td>
+                    <td>$firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm</td>
+                    <td>$birthday[3]</td>
+                    <td>$phoneNumber</td>
+                    <td><input type='checkbox' name='email[]' value=$friendEmail></td></tr>
+TABLEDATA;
 
-                $body .= "<td><img src=\"data:image / jpeg;base64,{$photodata}\" width='100' height='100'></td><td>$firstName</td><td>$lastName</td><td>$friendEmail</td><td>$food</td>
-                <td>$firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm</td><td>$birthday[3]</td><td>$phoneNumber</td><td><input type='checkbox' name='email[]' value=$friendEmail></td></tr>";
-
+                }
             }
         }
        $body .= "</table>";
+
+    }
+
+    function checkTimes($userStart, $userEnd, $friendStart, $friendEnd){
+        if(($userStart <= $friendStart && $userEnd >= $friendStart) || ($userStart <= $friendStart && $userEnd >= $friendEnd) || ($userStart >= $friendStart && $userEnd <= $friendEnd) || ($userStart >= $friendStart && $userStart <= $friendEnd)){
+            return true;
+        }
+        return false;
+    }
+
+    function alreadyExists($students, $email){
+        foreach ($students as $student){
+            if ($email == $student->getEmail()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function hasCommonFood($userFoods, $friendFoods){
+        foreach ($userFoods as $userFood){
+            foreach ($friendFoods as $friendFood){
+                if ($userFood == $friendFood){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    if ($anyFriends == false){
+        $body = "<h2>Sorry no new friends were found :(</h2>";
     }
 
     $body .= <<<BOTTOMBODY

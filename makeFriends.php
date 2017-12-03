@@ -112,8 +112,11 @@ TOPBODY;
 
 
                 $size = count($userFriends);
+                if ($size > 0){
+                    $exists = alreadyExists($userFriends, $friendEmail);
+                }
 
-                if (checkTimes($userTime[0],$userTime[1],$timeAvail[0],$timeAvail[1]) && ($size != 0 && !(alreadyExists($userFriends, $friendEmail))) && hasCommonFood($userFood ,$food)){
+                if (checkTimes($userTime[0],$userTime[1],$timeAvail[0],$timeAvail[1]) && !$exists && hasCommonFood($userFood ,$food)){
                     $anyFriends = true;
                     $food = implode(", ", $food);
                     $body .= <<<TABLEDATA

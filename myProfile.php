@@ -99,49 +99,61 @@ $body = <<<BODY
     <!DOCTYPE html>
     <html>
     <head>
-        <title>My Profile</title>
-        <link rel="shortcut icon" href="favicon.ico"/>
-        <link rel="stylesheet" type="text/css" href="menu.css"/>
+        <title>My Profile</title>       
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="shortcut icon" href="favicon.ico"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-    <h2>This is your profile, $firstName $lastName.</h2>
+    
+    <div class="jumbotron text-center">
+		<h2>This is your profile, $firstName $lastName.</h2><br><br>
+    	$imgData<br><br>
+	</div>
 
-    $imgData
-    <br><br>
-    <strong>Name:</strong>
-        $firstName $lastName
-    <br><br>
-    <strong>Bio:</strong>
-        $text
-    <br><br>
-    <strong>Favorite Kinds of Foods:</strong>
-        $food
-    <br><br>
-    <strong>Time Availability:</strong>
-        $firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm
-    <br><br>
-    <strong>Contact Information:</strong>
-        $telephoneNumber
-    <br><br>
-    <strong>Birthday:</strong>
-        $birthday[1] $birthday[2]
-    <br><br>
-    <strong>Age:</strong>
-        $birthday[3]
-    <br><br>
+    <div class="container">
+    <div class="text-center">
+    
+    <div class="form-group">
+		<div class="col-sm-4">       
+    	<strong>Name: </strong>$firstName $lastName<br><br>        
+       	<strong>Current Age: </strong>$birthday[3]<br><br> 
+        <strong>Birthday: </strong>$birthday[1] $birthday[2]<br><br>
+        </div>
+    </div>
+    
+   	<div class="col-sm-4">
+    	<strong>Favorite Kinds of Foods:</strong>$food<br><br> 
+        <strong>Biography: </strong>$text<br><br>
+    </div>
+    
+    <div class="col-sm-4">
+    	<strong>Time Availability: </strong>
+       		$firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm
+    	<br><br>
+        <strong>Contact Information: </strong>$telephoneNumber<br><br>
+    </div>   
 
+	<div class="form-group row">
+    <div class="col-sm-12">
+    <hr><br>
     <form action="editProfile.php" method="POST">
         <input type="submit" name="edit" value="Edit My Profile" class="buttons"/>
-    </form>
-    <br>
-
+    </form><br>
     <form action="menu.html" method="POST">
         <input type="submit" name="home" value="Go Home" class="back"/>
-    </form>
+    </form><hr>
+    </div>
+    </div>
+    
+    </div>
+    </div> 
 </body>
 </html>
 BODY;
-
 
 echo $body;
 ?>

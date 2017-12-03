@@ -151,7 +151,7 @@ $page = <<< THIS
         <hr><br>
         
         <!-- Personal Description -->
-		Tell us a little about yourself!<br><br>
+		Tell us a little about yourself or some of the foods you enjoy!<br><br>
 		<textarea rows="5" cols="75" name="text" value="$text"> </textarea><br><br>
         <hr><br>
         

@@ -111,7 +111,9 @@ TOPBODY;
                 $phoneNumber = $recordArray['telephoneNumber'];
 
 
-                if (checkTimes($userTime[0],$userTime[1],$timeAvail[0],$timeAvail[1]) && !(alreadyExists($userFriends, $friendEmail)) && hasCommonFood($userFood ,$food)){
+                $size = count($userFriends);
+
+                if (checkTimes($userTime[0],$userTime[1],$timeAvail[0],$timeAvail[1]) && ($size != 0 && !(alreadyExists($userFriends, $friendEmail))) && hasCommonFood($userFood ,$food)){
                     $anyFriends = true;
                     $food = implode(", ", $food);
                     $body .= <<<TABLEDATA

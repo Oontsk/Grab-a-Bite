@@ -16,11 +16,7 @@ $fileName= "";
 $imgData;
 $page = "";
 
-
-
 require_once ("dbLogin.php");
-
-
 
 if (isset($_POST["submitButton"])) {
         if ($_POST["submitButton"] === "Go Back") {
@@ -48,8 +44,6 @@ if (isset($_POST["submitButton"])) {
                 $arr = [];
                 $friendsArray = serialize($arr);
 
-
-
                 if ($_FILES['picture']['tmp_name'] === "") {
                     $imgData = $db_connection->real_escape_string(
                         file_get_contents("ProfilePictures/defaultProfile.png"));
@@ -58,7 +52,6 @@ if (isset($_POST["submitButton"])) {
                 }
 
                 $pwhash = password_hash($password, PASSWORD_DEFAULT);
-
                 $db_connection->query("insert into users VALUES 
                                 (\"{$fn}\", \"{$ln}\", \"{$email}\",
                                 \"{$pwhash}\", \"{$pn}\", \"{$bd}\",
@@ -72,16 +65,12 @@ if (isset($_POST["submitButton"])) {
                 header("Location: menu.html");
             }
     }
-
-
-
-
-
 }
 
 if(isset($_POST['email']) && $result->num_rows > 0){
     $page .= "<h2>Email already in system</h2>";
 }
+
 $page = <<< THIS
 <!DOCTYPE html>
 <html>
@@ -102,27 +91,21 @@ $page = <<< THIS
 	<form enctype="multipart/form-data" action="signup.php" method="POST">
     	<hr><br>
         
-        <!-- First Name -->
+        <!-- First Name, Last Name -->
     	First Name: <input type="text" name="firstName" value="$fn"><br><br>
         <hr><br>
-        
-        <!-- Last Name -->
-		Last Name: <input type="text" name="lastName" value="$ln"><br><br>
+  		Last Name: <input type="text" name="lastName" value="$ln"><br><br>
         <hr><br>
         
-        <!-- Email -->
+        <!-- Email, Password -->
 		Email: <input type="email" name="email" value="$email" required="required"><br><br>
-        <hr><br>
-        
-        <!-- Password -->
+        <hr><br>        
 		Password: <input type="password" name="password" value="$password"/><br><br>
         <hr><br>
         
-        <!-- Phone Number -->
+        <!-- Phone Number, Birthday -->
 		Phone Number: <input type="tel" name="telephoneNumber" value="$pn"><br><br>
-        <hr><br>
-        
-        <!-- Birth Date -->
+        <hr><br>        
 		Birthday: <input type="date" name="birthday" value="$bd"><br><br>
         <hr><br>
         
@@ -181,7 +164,8 @@ $page = <<< THIS
 	</form>
     </div>
     
-    
+    <!-- Javascript Validation for signup.php -->
+    <script src="validateSignup.js"></script>    
 </body>
 </html>
 THIS;

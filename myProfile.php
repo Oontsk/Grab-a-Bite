@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 require_once("dbLogin.php");
 
@@ -55,7 +51,6 @@ if ($secondHour[0] < 13) {
 $food = explode(",", $food);
 $food = implode(", ", $food);
 
-
 $birthday = explode("-", $birthday);
 
 switch ($birthday[1]) {
@@ -108,6 +103,7 @@ $body = <<<BODY
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="menu.css"/>
 		<link rel="shortcut icon" href="favicon.ico"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -139,7 +135,7 @@ $body = <<<BODY
     	<strong>Time Availability: </strong>
        		$firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm
     	<br><br>
-        <strong>Contact Information: </strong>$telephoneNumber<br><br>
+        <strong>Contact Information: </strong>$telephoneNumber[0]$telephoneNumber[1]$telephoneNumber[2]-$telephoneNumber[3]$telephoneNumber[4]$telephoneNumber[5]-$telephoneNumber[6]$telephoneNumber[7]$telephoneNumber[8]$telephoneNumber[9]<br><br>
     </div>   
 
 	<div class="form-group row">

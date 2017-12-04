@@ -67,7 +67,7 @@ TOPBODY;
         } else {
             
             $body .= "<table border=1>";
-            $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Foods</th><th>Time Available</th><th>Age</th><th>Phone Number</th><th>Match?</th>";
+            $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Foods</th><th>Time Available</th><th>Age</th><th>Match?</th>";
 
 
             while ($recordArray = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -125,11 +125,11 @@ TOPBODY;
                     <td><img src="data:image / jpeg;base64,{$photodata}" width='100' height='100'></td>
                     <td>$firstName</td>
                      <td>$lastName</td> 
-                     <td>$friendEmail</td> 
+                   
                      <td>$food</td>
                     <td>$firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm</td>
                     <td>$birthday[3]</td>
-                    <td>$phoneNumber</td>
+                  
                     <td><input type='checkbox' name='email[]' value=$friendEmail></td></tr>
 TABLEDATA;
 

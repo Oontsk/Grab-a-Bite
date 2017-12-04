@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 require_once("dbLogin.php");
 
@@ -54,7 +50,6 @@ if ($secondHour[0] < 13) {
 
 $food = explode(",", $food);
 $food = implode(", ", $food);
-
 
 $birthday = explode("-", $birthday);
 
@@ -139,7 +134,7 @@ $body = <<<BODY
     	<strong>Time Availability: </strong>
        		$firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm
     	<br><br>
-        <strong>Contact Information: </strong>$telephoneNumber<br><br>
+        <strong>Contact Information: </strong>$telephoneNumber[0]$telephoneNumber[1]$telephoneNumber[2]-$telephoneNumber[3]$telephoneNumber[4]$telephoneNumber[5]-$telephoneNumber[6]$telephoneNumber[7]$telephoneNumber[8]$telephoneNumber[9]<br><br>
     </div>   
 
 	<div class="form-group row">

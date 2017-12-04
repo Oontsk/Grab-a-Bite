@@ -110,7 +110,7 @@ TOPBODY;
                 $photodata = base64_encode($photo);
                 $phoneNumber = $recordArray['telephoneNumber'];
 
-
+                $exists = false;
                 $size = count($userFriends);
                 if ($size > 0){
                     $exists = alreadyExists($userFriends, $friendEmail);

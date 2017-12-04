@@ -20,7 +20,7 @@ $body = <<<TOPBODY
 	</head>
 	<body>
 		<h2>My Friends</h2>
-		<form action="congrats.php" method="post">
+		<form action="menu.html" method="post">
 
 TOPBODY;
 
@@ -46,7 +46,7 @@ $count = count($userFriends);
 if($count == 0){
     $body .= "<h2>Sorry you haven't made any friends yet :(</h2>";
 }else {
-    $body .= "<table border=1>";
+    $body .= "<table border=1 bordercolor=#B50C0C>";
     $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Foods</th><th>Time Available</th><th>Age</th><th>Phone Number</th>";
 
     foreach ($userFriends as $friend){
@@ -115,15 +115,11 @@ if($count == 0){
 TABLEDATA;
 
     }
-    $body .= "</table>";
+    $body .= "</table><br>";
 
 }
 
 $body .= <<<BOTTOMBODY
-            <input type="submit" name="addFriends" value="Add Friends" class="back"/>
-        </form>
-        <br>
-        <form action="menu.html" method="POST">
 			<input type="submit" name="home" value="Go Home" class="back"/>
 		</form>
 

@@ -110,7 +110,7 @@ $body = <<<BODY
     </head>
     <body>
     
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center" style="background: #B50C0C;">
 		<h2>This is your profile, $firstName $lastName.</h2><br><br>
     	$imgData<br><br>
 	</div>

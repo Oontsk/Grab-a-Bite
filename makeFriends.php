@@ -58,12 +58,13 @@ TOPBODY;
 
 
     if ($result) {
+        $anyFriends = false;
         $numRow = mysqli_num_rows($result);
 
         if ($numRow == 0) {
             $body = "<h2>Sorry no new friends were found :(</h2>";
         } else {
-            $anyFriends = false;
+            
             $body .= "<table border=1>";
             $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Foods</th><th>Time Available</th><th>Age</th><th>Phone Number</th>";
 

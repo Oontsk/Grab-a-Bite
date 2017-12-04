@@ -53,7 +53,7 @@ if($count == 0){
         $friendEmail = $friend->getEmail();
 
 
-        $query = "select * from users where email != '$friendEmail'";
+        $query = "select * from users where email = '$friendEmail'";
 
         $result = $db_connection->query($query);
 

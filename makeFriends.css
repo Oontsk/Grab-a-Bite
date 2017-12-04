@@ -18,3 +18,7 @@ th, td {
     text-align: center;
 }
 
+tr:hover {
+	background-color: #FBB13C;
+}
+

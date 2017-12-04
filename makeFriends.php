@@ -66,7 +66,7 @@ TOPBODY;
             $body = "<h2>Sorry no new friends were found :(</h2>";
         } else {
             
-            $body .= "<table border=1>";
+            $body .= "<table border=1 bordercolor=#B50C0C>";
             $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Foods</th><th>Time Available</th><th>Age</th><th>Match?</th>";
 
 

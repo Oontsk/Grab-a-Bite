@@ -42,7 +42,6 @@ if(isset($_POST['email'])){
 
     $serializedFriends = serialize($friends);
     $serializedFriends = $db_connection->real_escape_string($serializedFriends);
-    print_r($serializedFriends);
 
     $query = "update users set friends=\"{$serializedFriends}\" where email=\"{$email}\"";
 

@@ -17,11 +17,7 @@ $imgData;
 $page = "";
 $validEmail = "";
 
-
-
 require_once ("dbLogin.php");
-
-
 
 if (isset($_POST["submitButton"])) {
     if ($_POST["submitButton"] === "Go Back") {
@@ -49,8 +45,6 @@ if (isset($_POST["submitButton"])) {
             $arr = [];
             $friendsArray = serialize($arr);
 
-
-
             if ($_FILES['picture']['tmp_name'] === "") {
                 $imgData = $db_connection->real_escape_string(
                     file_get_contents("ProfilePictures/defaultProfile.png"));
@@ -59,7 +53,6 @@ if (isset($_POST["submitButton"])) {
             }
 
             $pwhash = password_hash($password, PASSWORD_DEFAULT);
-
             $db_connection->query("insert into users VALUES 
                                 (\"{$fn}\", \"{$ln}\", \"{$email}\",
                                 \"{$pwhash}\", \"{$pn}\", \"{$bd}\",
@@ -75,11 +68,6 @@ if (isset($_POST["submitButton"])) {
             $validEmail = "Account already exists under this email.";
         }
     }
-
-
-
-
-
 }
 
 if(isset($_POST['email']) && $result->num_rows > 0){
@@ -106,28 +94,25 @@ $page = <<< THIS
     	<hr><br>
         
         <!-- First Name -->
-    	First Name: <input type="text" name="firstName" value="$fn"
-    	id="firstName">
-        
+    	First Name: <input type="text" name="firstName" id="firstName" value="$fn">
         
         <!-- Last Name -->
-		Last Name: <input type="text" name="lastName" value="$ln"
-		id="lastName"><br>
+		Last Name: <input type="text" name="lastName" value="$ln" id="lastName"><br>
         <hr><br>
         
         <!-- Email -->
         <h1><strong>$validEmail</strong></h1>
-		Email: <input id="email" type="email" name="email" value="$email" > 
+		Email: <input id="email" type="email" name="email" value="$email"> 
         
         <!-- Password -->
-		Password: <input id="password" type="password" name="password" value="$password"/><br>
+		Password: <input  type="password" name="password" id="password" value="$password"/><br>
         <hr><br>
         
         <!-- Phone Number -->
-		Phone Number: <input id="phone" type="tel" name="telephoneNumber" value="$pn">
+		Phone Number: <input type="tel" name="telephoneNumber" id="phone" value="$pn">
         
         <!-- Birth Date -->
-		Birthday: <input id="birthday" type="date" name="birthday" value="$bd"><br>
+		Birthday: <input type="date" name="birthday" value="$bd"><br>
         <hr><br>
         
         <!-- Types of Food -->
@@ -178,18 +163,17 @@ $page = <<< THIS
        
     	<!-- Reset, Submit, and Go Back buttons -->
 		<input type="reset" value="Clear" class="buttons">
-		<input type="submit" name="submitButton" value="Submit" class="buttons">
-		<input type="submit" name="submitButton" value="Go Back" class="back"/>
+		<input type="submit" name="submitButton" id="submit" value="Submit" class="buttons">
+		<input type="submit" name="submitButton" id="back" value="Go Back" class="back"/>
     	<hr>
         
 	</form>
     </div>
-     <script src="validateSignup.js"></script>  
     
+    <!-- Javascript Validation file -->
+    <script src="validateSignup.js"></script>  
 </body>
 </html>
 THIS;
-
-
 
 echo $page;

@@ -16,6 +16,7 @@ $body = <<<TOPBODY
 		<title>Make Friends</title>
 		<link rel="shortcut icon" href="favicon.ico"/>
         <link rel="stylesheet" href="menu.css"/>
+        <link rel="stylesheet" href="makeFriends.css"/>
 	</head>
 	<body>
 		<h2>Make New Friends</h2>
@@ -58,14 +59,15 @@ TOPBODY;
 
 
     if ($result) {
+        $anyFriends = false;
         $numRow = mysqli_num_rows($result);
 
         if ($numRow == 0) {
             $body = "<h2>Sorry no new friends were found :(</h2>";
         } else {
-            $anyFriends = false;
-            $body .= "<table border=1>";
-            $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Foods</th><th>Time Available</th><th>Age</th><th>Phone Number</th>";
+            
+            $body .= "<table border=1 bordercolor=#B50C0C>";
+            $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Foods</th><th>Time Available</th><th>Age</th><th>Match?</th>";
 
 
             while ($recordArray = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -110,7 +112,7 @@ TOPBODY;
                 $photodata = base64_encode($photo);
                 $phoneNumber = $recordArray['telephoneNumber'];
 
-
+                $exists = false;
                 $size = count($userFriends);
                 if ($size > 0){
                     $exists = alreadyExists($userFriends, $friendEmail);
@@ -123,18 +125,18 @@ TOPBODY;
                     <td><img src="data:image / jpeg;base64,{$photodata}" width='100' height='100'></td>
                     <td>$firstName</td>
                      <td>$lastName</td> 
-                     <td>$friendEmail</td> 
+                   
                      <td>$food</td>
                     <td>$firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm</td>
                     <td>$birthday[3]</td>
-                    <td>$phoneNumber</td>
+                  
                     <td><input type='checkbox' name='email[]' value=$friendEmail></td></tr>
 TABLEDATA;
 
                 }
             }
         }
-       $body .= "</table>";
+       $body .= "</table><br>";
 
     }
 
@@ -172,6 +174,7 @@ TABLEDATA;
     $body .= <<<BOTTOMBODY
             <input type="submit" name="addFriends" value="Add Friends" class="back"/>
         </form>
+        <br>
         <form action="menu.html" method="POST">
 			<input type="submit" name="home" value="Go Home" class="back"/>
 		</form>

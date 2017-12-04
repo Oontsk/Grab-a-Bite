@@ -1,3 +1,7 @@
+
+
+
+
 <?php
 require_once("dbLogin.php");
 
@@ -12,48 +16,48 @@ $email = $_SESSION['UserEmail'];
 $query = "select * from users where email='$email'";
 $result = $db_connection->query($query);
 
-    $result->data_seek(0);
-    $row = $result->fetch_array(MYSQLI_ASSOC);
+$result->data_seek(0);
+$row = $result->fetch_array(MYSQLI_ASSOC);
 
-    $photo = $row["photo"];
+$photo = $row["photo"];
 
-    $photodata = base64_encode($photo);
+$photodata = base64_encode($photo);
 
-    $imgData = "<img src=\"data:image/;base64,{$photodata}\" height='250' width='250' style='border-style: solid;
+$imgData = "<img src=\"data:image/;base64,{$photodata}\" height='250' width='250' style='border-style: solid;
     border-color: black;'>";  //THE PROFILE PICTUREEEEEE, EDIT THIS INTO PAGE
 
-    $firstName = $row['firstName'];
-    $lastName = $row['lastName'];
-    $telephoneNumber = $row['telephoneNumber'];
-    $birthday= $row['birthday'];
-    $food = $row['food'];
-    $text = $row['text'];
-    $timeAvail = $row['specifications'];
+$firstName = $row['firstName'];
+$lastName = $row['lastName'];
+$telephoneNumber = $row['telephoneNumber'];
+$birthday= $row['birthday'];
+$food = $row['food'];
+$text = $row['text'];
+$timeAvail = $row['specifications'];
 
-    $timeAvail = explode(" ", $timeAvail);
-    $firstHour = explode(":", $timeAvail[0]);
-    $secondHour = explode(":", $timeAvail[1]);
+$timeAvail = explode(" ", $timeAvail);
+$firstHour = explode(":", $timeAvail[0]);
+$secondHour = explode(":", $timeAvail[1]);
 
-    if ($firstHour[0] < 13) {
-        $firstAmOrPm = "am";
-    } else {
-        $firstHour[0] = $firstHour[0] - 12;
-        $firstAmOrPm = "pm";
-    }
+if ($firstHour[0] < 13) {
+    $firstAmOrPm = "am";
+} else {
+    $firstHour[0] = $firstHour[0] - 12;
+    $firstAmOrPm = "pm";
+}
 
-    if ($secondHour[0] < 13) {
-        $secondAmOrPm = "am";
-    } else {
-        $secondHour[0] = $secondHour[0] - 12;
-        $secondAmOrPm = "pm";
-    }
+if ($secondHour[0] < 13) {
+    $secondAmOrPm = "am";
+} else {
+    $secondHour[0] = $secondHour[0] - 12;
+    $secondAmOrPm = "pm";
+}
 
-    $food = explode(",", $food);
-    $food = implode(", ", $food);
+$food = explode(",", $food);
+$food = implode(", ", $food);
 
-    $birthday = explode("-", $birthday);
+$birthday = explode("-", $birthday);
 
-    switch ($birthday[1]) {
+switch ($birthday[1]) {
     case 1:
         $birthday[1] = "January";
         break;
@@ -90,9 +94,9 @@ $result = $db_connection->query($query);
     case 12:
         $birthday[1] = "December";
         break;
-    }
+}
 
-    $birthday[3] = 2017 - $birthday[0];
+$birthday[3] = 2017 - $birthday[0];
 
 
 $body = <<<BODY
@@ -103,7 +107,6 @@ $body = <<<BODY
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="menu.css"/>
 		<link rel="shortcut icon" href="favicon.ico"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

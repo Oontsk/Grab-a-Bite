@@ -15,62 +15,64 @@ $avail = "";
 $fileName= "";
 $imgData;
 $page = "";
+$validEmail = "";
 
 require_once ("dbLogin.php");
 
 if (isset($_POST["submitButton"])) {
-        if ($_POST["submitButton"] === "Go Back") {
-            header("Location: homepage.php");
-        } else {
-            $email = trim($_POST["email"]);
+    if ($_POST["submitButton"] === "Go Back") {
+        header("Location: homepage.php");
+    } else {
+        $email = trim($_POST["email"]);
 
-            $db_connection = new mysqli($host, $user, $dbpassword, $database);
-            $result = $db_connection->query("SELECT 1 FROM users WHERE email = \"{$email}\"");
+        $db_connection = new mysqli($host, $user, $dbpassword, $database);
+        $result = $db_connection->query("SELECT 1 FROM users WHERE email = \"{$email}\"");
 
-            if ($result->num_rows === 0) {
+        if ($result->num_rows === 0) {
 
-                $fn = trim($_POST["firstName"]);
-                $ln = trim($_POST["lastName"]);
+            $fn = trim($_POST["firstName"]);
+            $ln = trim($_POST["lastName"]);
 
-                $password = trim($_POST["password"]);
-                $pn = $_POST["telephoneNumber"];
-                $bd = $_POST["birthday"];
-                $food = implode(",", $_POST["food"]);
-                $text = trim($_POST["text"]);
-                $startAvail = $_POST["usr-start-time"];
-                $endAvail = $_POST["usr-end-time"];
-                $avail = $startAvail . " " . $endAvail;
+            $password = trim($_POST["password"]);
+            $pn = $_POST["telephoneNumber"];
+            $bd = $_POST["birthday"];
+            $food = implode(",", $_POST["food"]);
+            $text = nl2br(trim($_POST["text"]));
+            $startAvail = $_POST["usr-start-time"];
+            $endAvail = $_POST["usr-end-time"];
+            $avail = $startAvail . " " . $endAvail;
 
-                $arr = [];
-                $friendsArray = serialize($arr);
+            $arr = [];
+            $friendsArray = serialize($arr);
 
-                if ($_FILES['picture']['tmp_name'] === "") {
-                    $imgData = $db_connection->real_escape_string(
-                        file_get_contents("ProfilePictures/defaultProfile.png"));
-                } else {
-                    $imgData = $db_connection->real_escape_string(file_get_contents($_FILES['picture']['tmp_name']));
-                }
+            if ($_FILES['picture']['tmp_name'] === "") {
+                $imgData = $db_connection->real_escape_string(
+                    file_get_contents("ProfilePictures/defaultProfile.png"));
+            } else {
+                $imgData = $db_connection->real_escape_string(file_get_contents($_FILES['picture']['tmp_name']));
+            }
 
-                $pwhash = password_hash($password, PASSWORD_DEFAULT);
-                $db_connection->query("insert into users VALUES 
+            $pwhash = password_hash($password, PASSWORD_DEFAULT);
+            $db_connection->query("insert into users VALUES 
                                 (\"{$fn}\", \"{$ln}\", \"{$email}\",
                                 \"{$pwhash}\", \"{$pn}\", \"{$bd}\",
                                 \"{$food}\", \"{$text}\", \"{$avail}\", \"{$imgData}\", \"{$friendsArray}\")");
 
-                $db_connection->close();
+            $db_connection->close();
 
-                session_start();
-                $_SESSION["UserEmail"] = $email;
+            session_start();
+            $_SESSION["UserEmail"] = $email;
 
-                header("Location: menu.html");
-            }
+            header("Location: menu.html");
+        } else {
+            $validEmail = "Account already exists under this email.";
+        }
     }
 }
 
 if(isset($_POST['email']) && $result->num_rows > 0){
     $page .= "<h2>Email already in system</h2>";
 }
-
 $page = <<< THIS
 <!DOCTYPE html>
 <html>
@@ -91,26 +93,30 @@ $page = <<< THIS
 	<form enctype="multipart/form-data" action="signup.php" method="POST">
     	<hr><br>
         
-        <!-- First Name, Last Name -->
-    	First Name: <input type="text" name="firstName" id="firstName" value="$fn"><br><br>
-        <hr><br>
-  		Last Name: <input type="text" name="lastName" value="$ln"><br><br>
+        <!-- First Name -->
+    	First Name: <input type="text" name="firstName" id="firstName" value="$fn">
+        
+        <!-- Last Name -->
+		Last Name: <input type="text" name="lastName" value="$ln" id="lastName"><br>
         <hr><br>
         
-        <!-- Email, Password -->
-		Email: <input type="email" name="email" value="$email" required="required"><br><br>
-        <hr><br>        
-		Password: <input type="password" name="password" value="$password"/><br><br>
+        <!-- Email -->
+        <h1><strong>$validEmail</strong></h1>
+		Email: <input type="email" name="email" id="email" value="$email" required="required"> 
+        
+        <!-- Password -->
+		Password: <input  type="password" name="password" id="password" value="$password"/><br>
         <hr><br>
         
-        <!-- Phone Number, Birthday -->
-		Phone Number: <input type="tel" name="telephoneNumber" value="$pn"><br><br>
-        <hr><br>        
-		Birthday: <input type="date" name="birthday" value="$bd"><br><br>
+        <!-- Phone Number -->
+		Phone Number: <input type="tel" name="telephoneNumber" id="phone" value="$pn">
+        
+        <!-- Birth Date -->
+		Birthday: <input type="date" name="birthday" value="$bd"><br>
         <hr><br>
         
         <!-- Types of Food -->
-		Select What Types of Food You Like:<br><br>
+		Select the Types of Food You Like:<br><br>
         <div class="form-group row">
         	<div class="col-sm-2">
         		<input type="checkbox" name="food[]" value="American"> American  
@@ -135,12 +141,12 @@ $page = <<< THIS
         
         <!-- Personal Description -->
 		Tell us a little about yourself or some of the foods you enjoy!<br><br>
-		<textarea rows="5" cols="75" name="text" value="$text"> </textarea><br><br>
-        <hr><br>
+		<textarea rows="5" cols="75" name="text" value="$text"> </textarea><hr><br>
+       
         
      	<!-- Availability -->
 		When are you available?<br><br>
-		Starting From: <input type="time" name="usr-start-time"> Until: <input type="time" name="usr-end-time"><br><br>
+		Starting From: <input type="time" name="usr-start-time"> Until: <input type="time" name="usr-end-time"><br>
         <hr><br>
 
 		<!-- Profile Picture -->
@@ -164,8 +170,8 @@ $page = <<< THIS
 	</form>
     </div>
     
-    <!-- Javascript Validation for signup.php -->
-    <script src="validateSignup.js"></script>    
+    <!-- Javascript Validation file -->
+    <script src="validateSignup.js"></script>  
 </body>
 </html>
 THIS;

@@ -27,7 +27,7 @@ $body = <<<TOPBODY
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-	    <div class="jumbotron text-center"
+	    <div class="jumbotron text-center">
 		    <h2>Make New Friends</h2>
 		</div>
 		<form action="congrats.php" method="post">

@@ -70,9 +70,6 @@ if (isset($_POST["submitButton"])) {
     }
 }
 
-if(isset($_POST['email']) && $result->num_rows > 0){
-    $page .= "<h2>Email already in system</h2>";
-}
 $page = <<< THIS
 <!DOCTYPE html>
 <html>
@@ -145,8 +142,8 @@ $page = <<< THIS
        
         
      	<!-- Availability -->
-		When are you available?<br><br>
-		Starting From: <input type="time" name="usr-start-time"> Until: <input type="time" name="usr-end-time"><br>
+		When are you available to meet?<br><br>
+		Starting From: <input id="startT" type="time" name="usr-start-time"> Until: <input type="time" id="endT" name="usr-end-time"><br>
         <hr><br>
 
 		<!-- Profile Picture -->

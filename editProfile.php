@@ -12,7 +12,7 @@ $email = $_SESSION["UserEmail"];
 require_once ("dbLogin.php");
 
 $db_connection = new mysqli($host,$user,$dbpassword,$database);
-$result = $db_connection->query("Select firstName,lastName,telephoneNumber,birthday,text,specifications,food from users where email = \"{$email}\"");
+$result = $db_connection->query("Select firstName,lastName,telephoneNumber,birthday,text,specifications,food,photo from users where email = \"{$email}\"");
 
 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
@@ -22,14 +22,17 @@ $password = "";
 $pn = $row['telephoneNumber'];
 $bd = $row['birthday'];
 $text = $row['text'];
+$textyz = explode("<br />", $text);
+$textxyzy = implode("", $textyz);
 $avail = $row['specifications'];
 $foodSnipe = $row['food'];
+
 $food = explode(",", $foodSnipe);
 $fixAvail = explode(" ", $avail);
-$startAvail = $avail[0];
-$endAvail = $avail[1];
+$startAvail = $fixAvail[0];
+$endAvail = $fixAvail[1];
 $fileName= "";
-$imgData;
+$imgData = $row['photo'];
 $page = "";
 
 
@@ -62,7 +65,7 @@ if (in_array("Caribbean", $food)) {
 
 if (isset($_POST["submitButton"])) {
     if ($_POST["submitButton"] === "Go Back") {
-        header("Location: menu.html");
+        //header("Location: myProfile.php");
     } else {
         $fn = trim($_POST["firstName"]);
         $ln = trim($_POST["lastName"]);
@@ -84,12 +87,14 @@ if (isset($_POST["submitButton"])) {
 
         $pwhash = password_hash($password, PASSWORD_DEFAULT);
 
-        $db_connection->query("update tables set firstName = \"{$fn}\", lastName=\"{$ln}\", 
-                                password = \"{$pwhash}\", telephoneNumber = \"{$pn}\", birthday=\"{$bd}\",
+        $result = $db_connection->query("update users set firstName = \"{$fn}\", lastName=\"{$ln}\", 
+                                telephoneNumber = \"{$pn}\", birthday=\"{$bd}\",
                                 food =\"{$food}\", text=\"{$text}\", specifications=\"{$avail}\", photo=\"{$imgData}\"
-                                where email = \"$email\"");
+                                where email = \"{$email}\"");
+
+
         $db_connection->close();
-        header("Location: menu.html");
+        //header("Location: myProfile.php");
     }
 }
 
@@ -110,36 +115,31 @@ $page = <<< THIS
 		    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		</head>
 		<body>
+		<form enctype="multipart/form-data" action="editProfile.php" method="POST">
 			<div class="container">
 		    <div class="text-center">
-			<form enctype="multipart/form-data" action="editProfile.php" method="POST">
+			
 		    	<hr><br>
 		        
 		         <!-- First Name -->
-    	First Name: <input type="text" name="firstName" value="$fn">
+    	First Name: <input type="text" name="firstName" id="firstName" value="$fn">
         
         
         <!-- Last Name -->
-		Last Name: <input type="text" name="lastName" value="$ln"><br>
+		Last Name: <input type="text" name="lastName" id="lastName" value="$ln"><br>
         <hr><br>
         
-        <!-- Email -->
        
-		Email: <input type="email" name="email" value="$email" required="required" readonly="readonly"> 
-        
-        <!-- Password -->
-		Password: <input type="password" name="password" value="$password"/><br>
-        <hr><br>
         
         <!-- Phone Number -->
-		Phone Number: <input type="tel" name="telephoneNumber" value="$pn">
+		Phone Number: <input type="tel" id="phone" name="telephoneNumber" value="$pn">
         
         <!-- Birth Date -->
-		Birthday: <input type="date" name="birthday" value="$bd"><br>
+		Birthday: <input type="date" id="birthday" name="birthday" value="$bd"><br>
         <hr><br>
         
         <!-- Types of Food -->
-		Select the Types of Food You Like:<br><br>
+		Updat the Types of Food You Like:<br><br>
         <div class="form-group row">
         	<div class="col-sm-2">
         		<input type="checkbox" name="food[]" value="American" $checked1> American  
@@ -164,17 +164,18 @@ $page = <<< THIS
         
         <!-- Personal Description -->
 		Tell us a little about yourself or some of the foods you enjoy!<br><br>
-		<textarea rows="5" cols="75" name="text" value="{$text}" content="{$text}"> </textarea><hr><br>
+		<textarea rows="5" cols="75" name="text" value="{$text}"> $textxyzy </textarea><hr><br>
        
         
      	<!-- Availability -->
-		When are you available?<br><br>
-		Starting From: <input type="time" name="usr-start-time" value="{$startAvail}"> Until: <input type="time" name="usr-end-time" value="{$endAvail}"><br>
+		When are you available to meet?<br><br>
+		Starting From: <input id="startT" type="time" name="usr-start-time" value="{$startAvail}"> Until: <input id="endT" type="time" name="usr-end-time" value="{$endAvail}"><br>
         <hr><br>
+        
 
 		<!-- Profile Picture -->
         <div class="container" text-align="center">
-        Upload your profile picture: <br><br> 
+        Upload a new profile picture if you want: <br><br> 
         </div>
         
         <div class="form-group text-center">
@@ -186,14 +187,14 @@ $page = <<< THIS
        
     	<!-- Reset, Submit, and Go Back buttons -->
 		<input type="reset" value="Clear" class="buttons">
-		<input type="submit" name="submitButton" value="Submit" class="buttons">
-		<input type="submit" name="submitButton" value="Go Back" class="back"/>
+		<input type="submit" name="submitButton" value="Submit" id="submit" class="buttons">
+		<input type="submit" name="submitButton" id="back" value="Go Back" class="back"/>
     	<hr>
         
-	</form>
+
     </div>
     
-    
+    <script src="validateEdit.js"></script>	</form>
 </body>
 </html>
 THIS;

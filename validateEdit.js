@@ -9,8 +9,7 @@ function validateForm() {
 
     let firstName = document.getElementById("firstName").value;
     let lastName = document.getElementById("lastName").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+
     let phone = document.getElementById("phone").value;
     let foods = document.getElementsByName("food[]");
 
@@ -26,20 +25,6 @@ function validateForm() {
     }
     if (!isNaN(lastName) ) {
         invalidMessages += "Invalid last name.\n";
-    }
-
-    /* validate email */
-
-    var regex = /\S+@\S+\.\S+/;
-    if (!regex.test(email)) {
-        invalidMessages += "Invalid email address.\n";
-    }
-
-
-    /* validate password */
-
-    if (password.length < 8) {
-        invalidMessages += "Password must be at least 8 characters.\n";
     }
 
 

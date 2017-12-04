@@ -1,3 +1,6 @@
+<!-- Grab A Bite Make Friends Page -->
+<!-- Anna Blendermann, Ronnie Davis, Ashley Dear, Hunter Klamut -->
+
 <?php
 /**
  * Created by PhpStorm.
@@ -13,17 +16,22 @@ $body = <<<TOPBODY
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Make Friends</title>
-		<link rel="shortcut icon" href="favicon.ico"/>
-        <link rel="stylesheet" href="menu.css"/>
+		<title>Make Friends</title>  
+        <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="menu.css"/>
         <link rel="stylesheet" href="makeFriends.css"/>
+	    <link rel="shortcut icon" href="favicon.ico"/>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<h2>Make New Friends</h2>
+	    <div class="jumbotron text-center"
+		    <h2>Make New Friends</h2>
+		</div>
 		<form action="congrats.php" method="post">
-
 TOPBODY;
-
 
 //Connect to DB
     $db_connection = new mysqli($host, $user, $dbpassword, $database);
@@ -45,18 +53,8 @@ TOPBODY;
 
     $userTime = explode(' ', $userTime);
 
-
-
-
-
     $query = "select * from users where email != '$email'";
-
     $result = $db_connection->query($query);
-
-
-
-
-
 
     if ($result) {
         $anyFriends = false;
@@ -67,8 +65,8 @@ TOPBODY;
         } else {
             
             $body .= "<table border=1 bordercolor=#B50C0C>";
-            $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Foods</th><th>Time Available</th><th>Age</th><th>Match?</th>";
-
+            $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Foods</th>";
+            $body .= "<th>Time Available</th><th>Age</th><th>Match?</th>";
 
             while ($recordArray = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                 $body .= "<tr>";
@@ -79,13 +77,9 @@ TOPBODY;
                 $food = $recordArray['food'];
                 $birthday= $recordArray['birthday'];
                 $timeAvail = $recordArray['specifications'];
-
-
-
                 $timeAvail = explode(" ", $timeAvail);
                 $firstHour = explode(":", $timeAvail[0]);
                 $secondHour = explode(":", $timeAvail[1]);
-
 
                 if ($firstHour[0] < 13) {
                     $firstAmOrPm = "am";
@@ -102,7 +96,6 @@ TOPBODY;
                 }
 
                 $food = explode(",", $food);
-
                 $birthday = explode("-", $birthday);
 
                 $birthday[3] = 2017 - $birthday[0];
@@ -124,20 +117,18 @@ TOPBODY;
                     $body .= <<<TABLEDATA
                     <td><img src="data:image / jpeg;base64,{$photodata}" width='100' height='100'></td>
                     <td>$firstName</td>
-                     <td>$lastName</td> 
+                    <td>$lastName</td> 
                    
-                     <td>$food</td>
+                    <td>$food</td>
                     <td>$firstHour[0]:$firstHour[1]$firstAmOrPm - $secondHour[0]:$secondHour[1]$secondAmOrPm</td>
                     <td>$birthday[3]</td>
                   
                     <td><input type='checkbox' name='email[]' value=$friendEmail></td></tr>
 TABLEDATA;
-
                 }
             }
         }
        $body .= "</table><br>";
-
     }
 
     function checkTimes($userStart, $userEnd, $friendStart, $friendEnd){
@@ -168,21 +159,43 @@ TABLEDATA;
     }
 
     if ($anyFriends == false){
-        $body = "<h2>Sorry no new friends were found :(</h2>";
+
+        $body = <<<TOPBODY
+        <!DOCTYPE html>
+        <html>
+	    <head>
+		    <title>Make Friends</title>  
+            <meta charset="utf-8">
+	        <meta name="viewport" content="width=device-width, initial-scale=1">
+	        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	        <link rel="stylesheet" href="menu.css"/>
+            <link rel="stylesheet" href="makeFriends.css"/>
+	        <link rel="shortcut icon" href="favicon.ico"/>
+	        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	    </head>
+	    <body>
+	        <div class="jumbotron text-center">
+		        <h2>Sorry, no new friends were found :(</h2>
+		     </div>	
+		     <form action="congrats.php" method="post"></form>	       
+TOPBODY;
     }
 
     $body .= <<<BOTTOMBODY
-            <input type="submit" name="addFriends" value="Add Friends" class="back"/>
-        </form>
-        <br>
+        <div class="container">
+        <div class="text-center"> 
+        <input type="submit" name="addFriends" value="Add Friends" class="back"/>
+        </form><br><br>
+        
         <form action="menu.html" method="POST">
 			<input type="submit" name="home" value="Go Home" class="back"/>
 		</form>
-
+		</div>
+		</div>
 	</body>
 </html>
 BOTTOMBODY;
 
-    echo $body;
-
+echo $body;
 ?>

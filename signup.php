@@ -92,7 +92,7 @@ $page = <<< THIS
     	<hr><br>
         
         <!-- First Name, Last Name -->
-    	First Name: <input type="text" name="firstName" value="$fn"><br><br>
+    	First Name: <input type="text" name="firstName" id="firstName" value="$fn"><br><br>
         <hr><br>
   		Last Name: <input type="text" name="lastName" value="$ln"><br><br>
         <hr><br>
@@ -157,8 +157,8 @@ $page = <<< THIS
        
     	<!-- Reset, Submit, and Go Back buttons -->
 		<input type="reset" value="Clear" class="buttons">
-		<input type="submit" name="submitButton" value="Submit" class="buttons">
-		<input type="submit" name="submitButton" value="Go Back" class="back"/>
+		<input type="submit" name="submitButton" id="submit" value="Submit" class="buttons">
+		<input type="submit" name="submitButton" id="back" value="Go Back" class="back"/>
     	<hr>
         
 	</form>
@@ -169,7 +169,5 @@ $page = <<< THIS
 </body>
 </html>
 THIS;
-
-
 
 echo $page;

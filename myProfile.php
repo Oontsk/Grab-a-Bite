@@ -53,7 +53,8 @@ if ($secondHour[0] < 13) {
 }
 
 $food = explode(",", $food);
-$food = implode(",", $food);
+$food = implode(", ", $food);
+
 
 $birthday = explode("-", $birthday);
 

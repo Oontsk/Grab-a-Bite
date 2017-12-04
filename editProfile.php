@@ -43,15 +43,19 @@ $checked6 = "";
 
 if (in_array("American", $food)) {
     $checked1 = "checked=\"checked\"";
-} else if (in_array("Mexican", $food)) {
+}
+if (in_array("Mexican", $food)) {
     $checked2 = "checked=\"checked\"";
-} else if (in_array("Italian", $food)) {
+}
+if (in_array("Italian", $food)) {
     $checked3 = "checked=\"checked\"";
-} else if (in_array("Asian", $food)) {
+}
+if (in_array("Asian", $food)) {
     $checked4 = "checked=\"checked\"";
-} else if (in_array("Caribbean", $food)) {
+}
+if (in_array("Caribbean", $food)) {
     $checked5 = "checked=\"checked\"";
-} else if (in_array("Buffet", $food)) {
+} if (in_array("Buffet", $food)) {
     $checked6 = "checked=\"checked\"";
 }
 
@@ -160,12 +164,12 @@ $page = <<< THIS
         
         <!-- Personal Description -->
 		Tell us a little about yourself or some of the foods you enjoy!<br><br>
-		<textarea rows="5" cols="75" name="text" value="$text"> </textarea><hr><br>
+		<textarea rows="5" cols="75" name="text" value="{$text}" content="{$text}"> </textarea><hr><br>
        
         
      	<!-- Availability -->
 		When are you available?<br><br>
-		Starting From: <input type="time" name="usr-start-time"> Until: <input type="time" name="usr-end-time"><br>
+		Starting From: <input type="time" name="usr-start-time" value="{$startAvail}"> Until: <input type="time" name="usr-end-time" value="{$endAvail}"><br>
         <hr><br>
 
 		<!-- Profile Picture -->

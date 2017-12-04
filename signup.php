@@ -117,7 +117,7 @@ $page = <<< THIS
         
         <!-- Email -->
         <h1><strong>$validEmail</strong></h1>
-		Email: <input id="email" type="email" name="email" value="$email" required="required"> 
+		Email: <input id="email" type="email" name="email" value="$email" > 
         
         <!-- Password -->
 		Password: <input id="password" type="password" name="password" value="$password"/><br>

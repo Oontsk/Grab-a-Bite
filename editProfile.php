@@ -1,8 +1,5 @@
 
 
-
-
-
 <?php
 
 
@@ -65,7 +62,7 @@ if (in_array("Caribbean", $food)) {
 
 if (isset($_POST["submitButton"])) {
     if ($_POST["submitButton"] === "Go Back") {
-        //header("Location: myProfile.php");
+        header("Location: myProfile.php");
     } else {
         $fn = trim($_POST["firstName"]);
         $ln = trim($_POST["lastName"]);
@@ -94,7 +91,7 @@ if (isset($_POST["submitButton"])) {
 
 
         $db_connection->close();
-        //header("Location: myProfile.php");
+        header("Location: myProfile.php");
     }
 }
 
@@ -202,4 +199,7 @@ THIS;
 
 
 echo $page;
+
+
+
 

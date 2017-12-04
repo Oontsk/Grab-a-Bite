@@ -57,7 +57,9 @@ function validateForm() {
         return false;
     }
     else {
-        var submitMessage = "Do you want to sign up for Grab A Bite?\n";
+        var submitMessage = "Are you okay with these changes?\n";
         window.confirm(submitMessage);
     }
 }
+
+

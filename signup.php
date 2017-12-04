@@ -109,7 +109,7 @@ $page = <<< THIS
 		Phone Number: <input type="tel" name="telephoneNumber" id="phone" value="$pn">
         
         <!-- Birth Date -->
-		Birthday: <input type="date" name="birthday" value="$bd"><br>
+		Birthday: <input id="birthday" type="date" name="birthday" value="$bd"><br>
         <hr><br>
         
         <!-- Types of Food -->

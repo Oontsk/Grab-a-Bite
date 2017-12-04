@@ -12,6 +12,7 @@ function validateForm() {
 
     let phone = document.getElementById("phone").value;
     let foods = document.getElementsByName("food[]");
+    let birthd = document.getElementById("birthday").value;
 
     let startT = document.getElementById("startT").value;
     let endT = document.getElementById("endT").value;
@@ -31,6 +32,10 @@ function validateForm() {
     /* validate phone number */
     if (isNaN(phone) || phone.length != 10) {
         invalidMessages += "Invalid phone number.\n";
+    }
+
+    if (birthd === "") {
+        invalidMessages += "Select a valid birthday.\n";
     }
 
 

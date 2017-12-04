@@ -49,26 +49,42 @@ if(isset($_POST['email'])){
     $worked = $db_connection->query($query);
 
     if($worked){
-        $body .= " <h1>Congratulations, Your new friends were added :)</h1>
+        $body .= "<div class=\"jumbotron text-center\">
+            <h2>Congratulations, Your new friends were added :)</h2>
+            </div>
+            
+            <div class=\"container\">
+            <div class=\"text-center\">
             <form action=\"menu.html\" method=\"post\">
                 <input type=\"submit\" value=\"Go Home\" class=\"back\">
             </form>
-
+            </div>
+            </div>
+            
+            </div>
             </body>
             </html>";
     }else {
-        $body .= " <h1>Sorry, No friends were added :(</h1>
+        $body .= "<div class=\"jumbotron text-center\">
+            <h2>Sorry, No friends were added :(</h2>
+            </div>
+            
+            <div class=\"container\">
+            <div class=\"text-center\">
             <form action=\"menu.html\" method=\"post\">
                 <input type=\"submit\" value=\"Go Home\" class=\"back\">
             </form>
-
+            </div>
+            </div>
+            
+            </div>           
             </body>
             </html>";
     }
 
 
 }else{
-    $body .= " <h1>Sorry, No friends were added :(</h1>
+    $body .= "<h1>Sorry, No friends were added :(</h1>
             <form action=\"menu.html\" method=\"post\">
                 <input type=\"submit\" value=\"Go Home\" class=\"back\">
             </form>
@@ -76,22 +92,5 @@ if(isset($_POST['email'])){
             </body>
             </html>";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 echo $body;
 ?>

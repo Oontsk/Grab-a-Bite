@@ -67,7 +67,7 @@ TOPBODY;
         } else {
             
             $body .= "<table border=1>";
-            $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Foods</th><th>Time Available</th><th>Age</th><th>Phone Number</th>";
+            $body .= "<th>Picture</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Foods</th><th>Time Available</th><th>Age</th><th>Phone Number</th><th>Match?</th>";
 
 
             while ($recordArray = mysqli_fetch_array($result, MYSQLI_ASSOC)) {

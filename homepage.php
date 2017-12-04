@@ -76,9 +76,8 @@ $page = <<<THIS
 <body>
 
 <!-- Grab A Bite home page -->
-<div class="jumbotron text-center">
-    <h1>Welcome to Grab A Bite</h1>
-    <p>Your guide to finding partners who love food.</p>
+<div class="jumbotron text-center" style="background: #B50C0C;">
+  <img src="theLogo.png"/>
 <p>$invalid</p>
 </div>
 

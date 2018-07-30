@@ -90,6 +90,8 @@ switch ($birthday[1]) {
     case 12:
         $birthday[1] = "December";
         break;
+    default:
+        $birthday[1] = "Unknown";
 }
 
 $birthday[3] = 2017 - $birthday[0];
